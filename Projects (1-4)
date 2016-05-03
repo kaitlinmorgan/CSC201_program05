@@ -1,0 +1,211 @@
+
+#Kaitlin Morgan
+#Lab 05: Roam and Plunder
+
+import random #Imports random packedge
+
+#<!------------------------Treasure----------------------------->
+
+class Treasure(object): #Treasure class
+
+    def __init__(self, tres_type, value, desc): #Takes in type, value, description
+        armor = 1 #Assigning each category numbers
+        weapon = 2
+        food = 3
+        gold = 4
+        rand_tres = random.randint(1, 4) #picking random category
+        self.tres_type = tres_type #treasue type
+        self.value = value #value of treasure
+        self.descr = descr #treasure description
+
+    def pickup(self):
+        self.pickup = pickup
+        return "You picked up %." % (rand_tres) #description of item picked up
+
+    def drop(self, location):
+        self.drop = drop #drop function
+        dirt = 1 #attempt at assigning various terrains
+        grass = 2
+        sand = 3
+        drop.location = random.randint(1, 3) #pulls random terrain
+        return "You dropped % on the %." % (self.tres_type, drop.location)
+        #Returns which treasure was dropped where
+
+    def wear(self):
+        gold = 1
+        silver = 2
+        bronze = 3 #Assigning specific armor types
+        armor_type = random.randint(1,3)
+        self.self = wear
+        return "You are wearing %s armor." % (armor_type)
+        #Description of wearing
+
+    def remove(self):
+        self.remove = remove
+        return "You removed armor." #Removing armor
+
+    def wield(self):
+        self.wield = wield
+        sword = 1
+        gun = 2
+        weapon_type = random.randint(1,2)
+        return "You wielded a weapon." #Weilding a weapon
+
+    def unwield(self):
+        self.unwield = unwield
+        return "You unwielded a weapon." #Unweilding weapon
+
+    def eat(self):
+        self.eat = eat #Eating food function
+        apple = 1
+        banana = 2
+        orange = 3 #attempt at assigning specific foods
+        self.food = random.randint(1,3) #random food pick
+        return "You ate a(n) %s" % (self.food) #eating random food
+
+    def lookat(self):
+        self.lookat = lookat #looking at things in inventory and values
+        return "You have %s armor, %s weapon(s), %s food, and %s food." % (armor_type, weapon_type, self.food, (armor_type + weapon_type + self.food))
+
+#<!------------------------Player & Monster----------------------------->
+
+class Player(Treasure): #Creating player class based on treasure
+
+    def __init__(self): #Initializing with player name, experience, and health
+        self.name = "Player 1"
+        self.exp = 1
+        self.health = 1
+        self.health_max = 1
+
+    def health_down(self, monster): #Function for health loss
+        damage = min(
+            max(randint(0, self.health) - randint(0, monster.health), 0),
+            monster.health) #Min and max damamge done to character
+        monster.health = monster.health - damage #Damage to monster
+        if damage == 0: #No damamge
+            print("%s misses %s!  No damage done." % (self.name, monster.name))
+        else: #Random amount of damage
+            print("%s manages to attack %s!" % (self.name, monster.name))
+            return monster.health <= 0 #Returns the monster's updated health
+
+    def health_up(self): #Gain in health
+        if self.health == self.health_max: #If too much food eaten, health lowered
+            print("Oh no, you ate too much!  Health lowered.")
+            return player.health
+        else: #Food eaten increases health
+            print("You ate %s and gained %s health points!" % (Treasure.self.food, random.randint(1,3)))
+            return player.health
+
+    def move_to(self, postion): #Function for player movement
+        self.position = "Land" #Random location that can be changed
+        return player.position #Print where the player is currently
+
+    def status(self, defense, attack): #Player defense and attack levels
+        self.defense = 1
+        self.attack = 1
+        if Treasure.wear() == True: #If wearing armor, player has defense level
+            print(self.defense*armor_type)
+        elif Treasure.wield() == True: # If wielding weapon player has attack level
+            print(self.attack*weapon_type)
+        else:
+            print("You have nothing equipted.")#Nothing attacked to player, no levels
+        return player.status
+
+    def inventory(self): #Making a list for inventory items
+        inv_list = []
+        if Treasure.wear() == True: #Adding armor to inventory
+            inv_list.append(armor_type)
+            return inv_list
+        elif Treasure.eat() == True: #Adding food to inventory
+            inv_list.append(self.food)
+            return inv_list
+        elif Treasure.wield() == True: #Adding weapon to inventory
+            inv_list.append(weapon_type)
+            return inv_list
+        else:
+            print("Nothing in your inventory.") #Prints string if nothing in inventory
+
+class Monster(Player): #Class for the enemy monster
+
+    def __init__(self, name, health): #Monster's name and health level
+        self.name = "Monster"
+        self.health = 1
+
+#<!--------Project 1: Random level------->
+
+def level(): #Defining level function
+
+    wall = "#"
+
+    height = random.randint(10,25) #Picks a random height for the level (10-25)
+    width = random.randint(10,40) #Picks a random width for the level (10-40)
+#Prints out the level as a hollow rectangle with #'s as walls
+    for k in range(0, height + 1):
+        if(k == 0) or (k == height):
+            print(wall * height)
+        else:
+            print(wall + ' ' * (height  -2) + wall)
+#Returns the string 'New Level' after the level is printed
+    return "New Level"
+#Activates and prints level funtion
+print(level())
+
+#<!--------Project 2: Store levels------->
+
+empty_cell = "."
+def_level = level() #Pulling in level function
+last_levels = [] #Empty level list
+if def_level != 0: #If there's a level, adds new level made to list
+    last_levels.append(def_level)
+else:
+    print("Error, no levels found.") #Prints error if no created levels
+
+def up_level(): #Function to move up level
+    stair_up = "u"
+    if last_levels[0] == 1: #If it moves up from first level then game ends
+        print("The game has ended.")
+    else: #Otherwise level goes up to new random one
+        print("You went up a level.")
+    return level()
+
+def down_level(): #Function to move down a level
+    stair_down = "u"
+    if last_levels[0] == 1:
+        print("You stayed on the current level.") #If on last level stays on level
+    else:
+        print("You went down a level.") #Otherwise goes down a level
+    return level()
+
+#<!--------Project 3: Adding Treasures------->
+
+treasure = "*"
+height_tres = random.randint(9,24) #Max height for treasure
+width_tres = random.randint(9,39) #max width for treasure
+
+for t in range(0, height_tres + 1): #Puts treasure randomly in specified range
+    if(t == 0) or (t == height_tres):
+        print('#' * height_tres)
+    else:
+        print(' ' + treasure * (height_tres  -2) + ' ')
+print("You found a treasure!")
+
+#<!--------Project 4: Player Actions------->
+
+class Commands(Player):
+    def __init__(self):
+        com = ["h: left", "j: down", "k: up", "l: right", "^: upstairs", "v: downstairs", "i: inventory"]
+        h = Player.move_to(left)
+        j = Player.move_to(down)
+        k = Player.move_to(up)
+        l = Player.move_to(right)
+        up = up_level()
+        v = down_level()
+        i = print(Player.inventory())
+        a = Treasure.wear()
+        A = Treasur.remove()
+        w = Treasure.wield()
+        W = Treasure.unwield()
+        e = Player.eat()
+        d = Player.drop()
+        p = Player.pickup()
+#Commands class for all player commands and partial list of usable ones
