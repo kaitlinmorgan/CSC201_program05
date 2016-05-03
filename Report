@@ -1,0 +1,57 @@
+I didn't really see it necessary to write two reports nor know what exactly we
+were supposed to separate into two reports?  So, I will be discussing both the
+classes tasks and the projects all in this one report if those were the intended
+points of separation.
+
+The objectives of this program were to use classes and functions to design the
+backbone for a basic video game.  Using simple text prints, the user should be
+able to play Roan and Plunder with onscreen prompts.  All of the classes and
+functions defined should work with one another to produce an array of commands
+that moves the player across randomly generated levels.  The player should be
+able to do things like battle monsters, gain experience, gain/lose health points,
+find treasures (consisting of armor to worn/removed, food to be eaten, weapons
+to be wielded or unwielded, and a value of items in gold).  The player should
+have an inventory with these items stored, be able to pick them up, drop them,
+and use them.  The player should be able to move across the level going in all
+direction, move to the next level, or move to a previous level.  A description
+of the player and their items should be able to be printed and the game should
+end when a player tries to go up a level while on the first level.
+
+My program has a main class called Treasure for all treasure objects that can
+be obtained up on the level (armor, weapons, food, and gold).  The items have a
+pickup and drop (plus location of drop) function.  The armor has wear and remove
+functions.  The weapons have wield and unwield functions.  The food can be eaten
+and an overall description of the items carried can be printed onscreen.  Next
+there is a Player subclass of Treasure, which carries out all the actions of the
+player.  The player can be given a name, starts with a basic level of experience,
+has health that fluctuates/max health.  The player can do damage or be hurt by
+a monster.  The player can move and has a status including defense and attack
+levels at the current time requested.  The player has an inventory of stored
+treasure items.  Then the Monster class is a subclass of the player.  The monster
+can have a name and has a specific health level until it's killed.  Next there is
+a levels function that generates a random rectangle of walls (#'s) where the
+inside is empty and where the treasure items, monster, and stairwells will be
+placed.  There are functions to go up a level or down a level.  Lastly, there is
+a Commands subclass of the Player class used to store various player commands.
+
+Variable names are fairly easy to understand and most are listed above as used
+in their appropriate functions.  The only unclear variables may be height_tres
+and width_tres, which are both used to determine a location for the treasure
+objects on the level.  Last_levels refers to the list of previous levels and
+def_level is the previously generated level using the level() function.  Inv_list
+is the list of all inventory items the player has.
+
+My program is able to generate random levels and place treasure objects in them.
+It can also print or return different description of items and pick items randomly
+with the random integer function.  Most of the commands work to some extent or
+have a basis of what I was going for at least in their code.
+
+I had many issues and errors with this program.  I did not manage to make it fully
+operational because my main problem consisted of not being able to figure out a
+proper grid system.  Instead I based my levels code off of a code we used for shapes,
+which worked really well for the walls.  I could not get the objects randomly
+in it, however, at least not only a few at a time.  The treasure objects fill the
+entire blank space when I only wanted a few and the other icons don't show up on
+it at all.  Not all of my classes work either, but I tried my best to show a basic
+idea of where I was going with them and gained a slightly better understanding of
+classes out of this exercise.
